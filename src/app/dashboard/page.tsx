@@ -21,7 +21,7 @@ const Dashboard = async () => {
 	});
 
 	return (
-		<div className="max-w-7xl mx-auto mt-16">
+		<div className="max-w-7xl mx-auto mt-16 pt-20">
 			{apiKey ? <ApiDashboard /> : <RequestApiKey />}
 		</div>
 	);
