@@ -7,7 +7,7 @@ export const createApiKey = async () => {
 	return data.apiKey?.key;
 };
 
-export const revokeApiKey = async (isCreate?: boolean) => {
+export const revokeApiKey = async () => {
 	const res = await fetch('/api/api-key/revoke', {
 		method: 'POST',
 		headers: {

@@ -34,7 +34,7 @@ const ApiKeyOptions: FC<Props> = ({ apiKey }) => {
 		onSuccess: () => router.refresh()
 	});
 
-	const { mutate: revokeKey, isLoading: isRevokingKey } = useMutation({
+	const { mutateAsync: revokeKey, isLoading: isRevokingKey } = useMutation({
 		mutationFn: revokeApiKey,
 		onError: () => {
 			toast({
@@ -43,13 +43,7 @@ const ApiKeyOptions: FC<Props> = ({ apiKey }) => {
 				type: 'error'
 			});
 		},
-		onSuccess: (_, isCreate) => {
-			if (isCreate) {
-				return createNewKey();
-			}
-
-			return router.refresh();
-		}
+		onSuccess: () => router.refresh()
 	});
 
 	const isLoading = isCreatingKey || isRevokingKey;
@@ -83,11 +77,19 @@ const ApiKeyOptions: FC<Props> = ({ apiKey }) => {
 					Copy
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem onClick={() => revokeKey(true)}>
+				<DropdownMenuItem
+					onClick={async () => {
+						const revokeSuccess = await revokeKey();
+
+						if (revokeSuccess) {
+							createNewKey();
+						}
+					}}
+				>
 					Create new key
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem onClick={() => revokeKey(false)}>
+				<DropdownMenuItem onClick={() => revokeKey()}>
 					Revoke key
 				</DropdownMenuItem>
 			</DropdownMenuContent>
