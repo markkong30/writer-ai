@@ -62,14 +62,15 @@ model ApiKey {
 }
 
 model ApiRequest {
-  id        String   @id @default(cuid())
-  timestamp DateTime @default(now())
+  id        String         @id @default(cuid())
+  timestamp DateTime       @default(now())
+  mode      ApiRequestMode
   method    String
   path      String
   status    Int
   duration  Int
   apiKeyId  String
-  apiKey    ApiKey   @relation(fields: [apiKeyId], references: [id])
+  apiKey    ApiKey         @relation(fields: [apiKeyId], references: [id])
 
   @@index([apiKeyId, timestamp])
 }
@@ -80,4 +81,11 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum ApiRequestMode {
+  extend
+  shorten
+  rephrase
+  correct_gramma
 }

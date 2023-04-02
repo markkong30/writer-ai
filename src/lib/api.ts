@@ -6,3 +6,20 @@ export const createApiKey = async () => {
 
 	return data.apiKey?.key;
 };
+
+export const revokeApiKey = async (isCreate?: boolean) => {
+	const res = await fetch('/api/api-key/revoke', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+
+	const data = await res.json();
+
+	if (data.error) {
+		throw new Error(data.error);
+	}
+
+	return data;
+};

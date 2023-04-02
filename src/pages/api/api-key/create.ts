@@ -7,7 +7,7 @@ import { CreateApiKeyResponse } from '@/types/api';
 import { z } from 'zod';
 import { withMethods } from '@lib/middlewares';
 
-const createKey = async (
+const handler = async (
 	req: NextApiRequest,
 	res: NextApiResponse<CreateApiKeyResponse>
 ) => {
@@ -54,4 +54,4 @@ const createKey = async (
 	}
 };
 
-export default withMethods(['GET'], createKey);
+export default withMethods(['GET'], handler);
