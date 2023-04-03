@@ -20,6 +20,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	try {
+		const start = new Date();
+
 		const { mode, input } = reqSchema.parse(body);
 
 		const validApiKey = await db.apiKey.findFirst({
@@ -30,10 +32,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		});
 
 		if (!validApiKey) {
-			return res.status(401).json({ error: 'Unauthorized' });
-		}
+			const duration = new Date().getTime() - start.getTime();
 
-		const start = new Date();
+			await db.apiRequest.create({
+				data: {
+					duration,
+					mode,
+					method: req.method as string,
+					path: req.url as string,
+					status: 401,
+					apiKeyId: apiKey
+				}
+			});
+
+			return res.status(401).json({ error: 'Unauthorized revoked key' });
+		}
 
 		const data = await openai.createChatCompletion({
 			model: 'gpt-3.5-turbo',
@@ -54,7 +67,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				method: req.method as string,
 				path: req.url as string,
 				status: 200,
-				apiKeyId: validApiKey.id
+				apiKeyId: validApiKey.key
 			}
 		});
 
