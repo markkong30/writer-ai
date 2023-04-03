@@ -80,10 +80,11 @@ const Table: FC<TableProps> = ({ userRequests }) => {
 		id: request.id,
 		col1: request.apiKeyId,
 		col2: request.mode,
-		col3: `${request.timestamp} ago`,
+		col3: request.timestamp,
 		col4: `${request.duration} ms`,
 		col5: request.status
 	}));
+
 	return (
 		<ThemeProvider theme={darkTheme}>
 			<DataGrid
@@ -99,6 +100,9 @@ const Table: FC<TableProps> = ({ userRequests }) => {
 						paginationModel: {
 							pageSize: 5
 						}
+					},
+					sorting: {
+						sortModel: [{ field: 'col3', sort: 'desc' }]
 					}
 				}}
 				columns={columns}

@@ -4,10 +4,11 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import Heading from '@components/heading/Heading';
 import Paragraph from '@components/paragraph/Paragraph';
+import { metaDescription } from '@lib/constants';
 
 export const metadata: Metadata = {
-	title: 'Similarity API | Home',
-	description: 'Free & open-source text similarity API'
+	title: 'WriterAI API | Home',
+	description: metaDescription
 };
 
 export default function Home() {
@@ -19,12 +20,12 @@ export default function Home() {
 						size="lg"
 						className="three-d text-black dark:text-light-gold"
 					>
-						Easily determine <br /> text similarity.
+						Unlock the power <br /> of AI Writing.
 					</Heading>
 
 					<Paragraph className="max-w-xl lg:text-left">
-						With the Text Similarity API, you can easily determine the
-						similarity between two pieces of text with a free{' '}
+						Elevate your writing to the next level with WriterAI&apos;s
+						AI-powered tools, available for free with our open-source{' '}
 						<Link
 							href="/login"
 							className="underline underline-offset-2 text-black dark:text-light-gold"

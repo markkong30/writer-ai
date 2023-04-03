@@ -2,7 +2,7 @@ import { authOptions } from '@lib/auth';
 import { db } from '@lib/db';
 import { getServerSession } from 'next-auth';
 import { notFound } from 'next/navigation';
-import { formatDistance } from 'date-fns';
+import { format } from 'date-fns';
 import Heading from '@components/heading/Heading';
 import Paragraph from '@components/paragraph/Paragraph';
 import { Input } from '@components/input/Input';
@@ -31,7 +31,7 @@ const ApiDashboard: FC = async () => {
 
 	const serializableRequests = userRequests.map((req) => ({
 		...req,
-		timestamp: formatDistance(new Date(req.timestamp), new Date())
+		timestamp: format(req.timestamp, 'MMMM d, yyyy h:mm:ss a')
 	}));
 
 	return (
