@@ -88,4 +88,7 @@ enum ApiRequestMode {
   shorten
   rephrase
   correct_gramma
+  replace_word
+  simplify
+  summarize
 }

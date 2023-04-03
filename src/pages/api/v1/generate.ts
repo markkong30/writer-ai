@@ -1,10 +1,9 @@
 import { db } from '@/lib/db';
 import { openai } from '@/lib/openai';
 import { withMethods } from '@lib/middlewares';
+import { getPrompts, modes } from '@lib/prompts';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { z } from 'zod';
-
-const modes = ['extend', 'shorten', 'rephrase', 'correct_gramma'] as const;
 
 const reqSchema = z.object({
 	mode: z.enum(modes),
@@ -50,7 +49,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		const data = await openai.createChatCompletion({
 			model: 'gpt-3.5-turbo',
-			messages: [{ role: 'user', content: input }],
+			messages: [{ role: 'user', content: getPrompts(mode, input) }],
 			temperature: 0.3,
 			max_tokens: 1000,
 			n: 1
