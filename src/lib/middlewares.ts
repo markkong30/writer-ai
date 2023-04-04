@@ -1,7 +1,5 @@
 import { Method } from '@/types/api';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth';
-import { authOptions } from './auth';
 import { db } from './db';
 import { differenceInMinutes } from 'date-fns';
 
@@ -16,38 +14,60 @@ export function withMethods(methods: Method[], handler: NextApiHandler) {
 		const pathname = req.url as string;
 
 		if (pathname.startsWith('/api/v1')) {
-			const session = await getServerSession(req, res, authOptions);
-
-			if (!session?.user) return;
+			const now = new Date();
+			const key = req.headers.authorization;
 
 			const apiKey = await db.apiKey.findFirst({
-				where: { userId: session.user.id, enabled: true }
+				where: { key, enabled: true }
 			});
+
+			if (!apiKey) return handler(req, res);
+
+			const hourAgo = new Date(now.getTime() - 60 * 60 * 1000);
 
 			const userRequests = await db.apiRequest.findMany({
 				where: {
-					apiKeyId: apiKey?.key
+					apiKeyId: apiKey?.key,
+					timestamp: { gte: hourAgo },
+					status: 200
 				},
 				orderBy: {
 					timestamp: 'desc'
-				},
-				take: MAX_REQUEST_PER_HOUR
+				}
 			});
 
 			if (!userRequests.length) return handler(req, res);
 
-			const oldestRequest = userRequests[userRequests.length - 1];
+			const requestCount = userRequests.length;
+			const latestRequest = userRequests[0];
 
-			if (differenceInMinutes(new Date(), oldestRequest.timestamp) < 60) {
-				res.status(400).json({
-					error:
-						'Limit exceeded! You can only make 5 requests per hour in a free account'
+			if (
+				requestCount === MAX_REQUEST_PER_HOUR &&
+				latestRequest &&
+				latestRequest.timestamp.getTime() >= hourAgo.getTime()
+			) {
+				await db.apiRequest.create({
+					data: {
+						duration: new Date().getTime() - now.getTime(),
+						mode: req.body.mode,
+						method: req.method as string,
+						path: req.url as string,
+						status: 429,
+						apiKeyId: key as string
+					}
 				});
-				return res.end();
+
+				const minutesLeft =
+					60 - differenceInMinutes(now, latestRequest.timestamp);
+
+				return res.status(429).json({
+					error: `Limit exceeded! You can only make ${MAX_REQUEST_PER_HOUR} requests per hour in a free account. Please try again in ${minutesLeft} minutes.`
+				});
 			}
 
 			return handler(req, res);
 		}
+
 		return handler(req, res);
 	};
 }

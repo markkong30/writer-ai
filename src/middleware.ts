@@ -8,27 +8,28 @@ export default withAuth(
 		// console.log(req.nextauth);
 		const pathname = req.nextUrl.pathname;
 
-		if (pathname.startsWith('/api')) {
-			const user = req.nextauth.token;
+		// if (pathname.startsWith('/api')) {
+		// 	const user = req.nextauth.token;
 
-			if (!user) return NextResponse.json({ error: 'Unauthorized' });
+		// 	if (!user) return NextResponse.json({ error: 'Unauthorized' });
 
-			// const apiKey = await db.apiKey.findFirst({
-			// 	where: { userId: user.id, enabled: true }
-			// });
+		// 	// const apiKey = await db.apiKey.findFirst({
+		// 	// 	where: { userId: user.id, enabled: true }
+		// 	// });
 
-			// const userRequests = await db.apiRequest.findMany({
-			// 	where: {
-			// 		apiKeyId: apiKey?.key
-			// 	},
-			// 	orderBy: {
-			// 		timestamp: 'desc'
-			// 	},
-			// 	take: 5
-			// });
+		// 	// const userRequests = await db.apiRequest.findMany({
+		// 	// 	where: {
+		// 	// 		apiKeyId: apiKey?.key
+		// 	// 	},
+		// 	// 	orderBy: {
+		// 	// 		timestamp: 'desc'
+		// 	// 	},
+		// 	// 	take: 5
+		// 	// });
 
-			// console.log(userRequests);
-		}
+		// 	// console.log(userRequests);
+		// }
+		return NextResponse.next();
 	},
 	{
 		callbacks: {

@@ -70,7 +70,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			}
 		});
 
-		return res.status(200).json({ success: true, input, output });
+		return res.status(200).json({ success: true, mode, input, output });
 	} catch (error) {
 		if (error instanceof z.ZodError) {
 			return res.status(400).json({ error: error.issues });
