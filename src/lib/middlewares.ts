@@ -25,6 +25,23 @@ export function withMethods(methods: Method[], handler: NextApiHandler) {
 
 			const hourAgo = new Date(now.getTime() - 60 * 60 * 1000);
 
+			// const user = await db.user.findUnique({
+			// 	where: { id: apiKey.userId }
+			// });
+
+			// const userRequests = await db.apiRequest.findMany({
+			// 	where: {
+			// 		apiKey: {
+			// 			userId: user?.id
+			// 		}
+			// 	},
+			// 	orderBy: {
+			// 		timestamp: 'desc'
+			// 	}
+			// });
+
+			// console.log(user, apiKey, userRequests);
+
 			const userRequests = await db.apiRequest.findMany({
 				where: {
 					apiKeyId: apiKey?.key,
