@@ -2,28 +2,26 @@
 
 import { Button } from '@components/button/Button';
 import { toast } from '@components/toast/Toast';
+import { useMutation } from '@tanstack/react-query';
 import { signOut } from 'next-auth/react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 type Props = {};
 
 const SignOutBtn: FC<Props> = ({}) => {
-	const [isLoading, setIsLoading] = useState(false);
-
-	const signOutWithGoogle = async () => {
-		try {
-			await signOut();
-		} catch (err) {
+	const { mutate, isLoading } = useMutation({
+		mutationFn: () => signOut(),
+		onError: () => {
 			toast({
 				title: 'Error signing out',
 				message: 'Please try again later',
 				type: 'error'
 			});
 		}
-	};
+	});
 
 	return (
-		<Button onClick={signOutWithGoogle} isLoading={isLoading}>
+		<Button onClick={() => mutate()} isLoading={isLoading}>
 			Sign out
 		</Button>
 	);

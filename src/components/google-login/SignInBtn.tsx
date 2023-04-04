@@ -2,29 +2,33 @@
 
 import { Button } from '@components/button/Button';
 import { toast } from '@components/toast/Toast';
+import { useMutation } from '@tanstack/react-query';
 import { signIn } from 'next-auth/react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import Image from 'next/image';
 
-type Props = {};
+type Props = {
+	text: string;
+};
 
-const SignInBtn: FC<Props> = ({}) => {
-	const [isLoading, setIsLoading] = useState(false);
-
-	const signInWithGoogle = async () => {
-		try {
-			await signIn('google');
-		} catch (err) {
+const SignInBtn: FC<Props> = ({ text }) => {
+	const { mutate, isLoading } = useMutation({
+		mutationFn: () => signIn('google'),
+		onError: () => {
 			toast({
 				title: 'Error signing in',
 				message: 'Please try again later',
 				type: 'error'
 			});
 		}
-	};
+	});
 
 	return (
-		<Button onClick={signInWithGoogle} isLoading={isLoading}>
-			Sign in
+		<Button onClick={() => mutate()} isLoading={isLoading}>
+			<div className="flex gap-2">
+				<Image src="/google.svg" alt="" width={15} height={15} />
+				<p>{text}</p>
+			</div>
 		</Button>
 	);
 };

@@ -41,7 +41,7 @@ const Navbar: FC = async () => {
 							<SignOutBtn />
 						</>
 					) : (
-						<SignInBtn />
+						<SignInBtn text="Sign in" />
 					)}
 				</div>
 			</div>
