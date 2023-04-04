@@ -42,8 +42,7 @@ const ApiKeyOptions: FC<Props> = ({ apiKey }) => {
 				message: 'Please try again later.',
 				type: 'error'
 			});
-		},
-		onSuccess: () => router.refresh()
+		}
 	});
 
 	const isLoading = isCreatingKey || isRevokingKey;
@@ -89,7 +88,15 @@ const ApiKeyOptions: FC<Props> = ({ apiKey }) => {
 					Create new key
 				</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem onClick={() => revokeKey()}>
+				<DropdownMenuItem
+					onClick={async () => {
+						const revokeSuccess = await revokeKey();
+
+						if (revokeSuccess) {
+							router.refresh();
+						}
+					}}
+				>
 					Revoke key
 				</DropdownMenuItem>
 			</DropdownMenuContent>

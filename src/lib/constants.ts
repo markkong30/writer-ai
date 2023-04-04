@@ -2,10 +2,10 @@ export const nodejs = `const axios = require("axios");
 
 const options = {
     method: 'POST',
-    url: 'https://similarityapi.com/api/v1/similarity',
+    url: 'https://author-ai.vercel.app/api/v1/generate',
     params: {
-      text1: 'First text',
-      text2: 'Second text'
+      mode: 'extend',
+      input: 'Input text',
     },
     headers: {
       'Authorization': 'YOUR_API_KEY',
@@ -20,18 +20,18 @@ axios.request(options).then(function (response) {
 
 export const python = `import requests
 
-url = 'https://similarityapi.com/api/v1/{mode}'
+url: 'https://author-ai.vercel.app/api/v1/generate'
 api_key = 'YOUR_API_KEY'
-text1 = 'First text'
-text2 = 'Second text'
+mode: 'extend'
+input: 'Input text'
 
 headers = {
     'Authorization': api_key
 }
 
 payload = {
-    'text1': text1,
-    'text2': text2
+    'mode': mode,
+    'input': input
 }
 
 response = requests.post(url, headers=headers, json=payload)

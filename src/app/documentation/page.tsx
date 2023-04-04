@@ -6,7 +6,7 @@ import DocumentationTabs from '@components/documentation-tabs/DocumentationTabs'
 import { metaDescription } from '@lib/constants';
 
 export const metadata: Metadata = {
-	title: 'WriterAI API | Documentation',
+	title: 'AuthorAI API | Documentation',
 	description: metaDescription
 };
 

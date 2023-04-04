@@ -31,7 +31,7 @@ const ApiDashboard: FC = async () => {
 
 	const serializableRequests = userRequests.map((req) => ({
 		...req,
-		timestamp: format(req.timestamp, 'MMMM d, yyyy h:mm:ss a')
+		timestamp: format(req.timestamp, 'MMMM d, yyyy HH:mm:ss')
 	}));
 
 	return (

@@ -7,7 +7,7 @@ import Paragraph from '@components/paragraph/Paragraph';
 import { metaDescription } from '@lib/constants';
 
 export const metadata: Metadata = {
-	title: 'WriterAI API | Home',
+	title: 'AuthorAI API | Home',
 	description: metaDescription
 };
 
@@ -24,7 +24,7 @@ export default function Home() {
 					</Heading>
 
 					<Paragraph className="max-w-xl lg:text-left">
-						Elevate your writing to the next level with WriterAI&apos;s
+						Elevate your writing to the next level with AuthorAI&apos;s
 						AI-powered tools, available for free with our open-source{' '}
 						<Link
 							href="/login"

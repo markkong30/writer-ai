@@ -42,19 +42,6 @@ export function withMethods(methods: Method[], handler: NextApiHandler) {
 				}
 			});
 
-			console.log(user, apiKey, userRequests);
-
-			// const userRequests = await db.apiRequest.findMany({
-			// 	where: {
-			// 		apiKeyId: apiKey?.key,
-			// 		timestamp: { gte: hourAgo },
-			// 		status: 200
-			// 	},
-			// 	orderBy: {
-			// 		timestamp: 'desc'
-			// 	}
-			// });
-
 			if (!userRequests.length) return handler(req, res);
 
 			const requestCount = userRequests.length;

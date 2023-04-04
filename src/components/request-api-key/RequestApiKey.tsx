@@ -3,14 +3,18 @@
 import { Button } from '@components/button/Button';
 import CopyButton from '@components/copyBtn/CopyBtn';
 import Heading from '@components/heading/Heading';
+import Icons from '@components/icons/Icons';
 import { Input } from '@components/input/Input';
 import Paragraph from '@components/paragraph/Paragraph';
 import { toast } from '@components/toast/Toast';
 import { createApiKey } from '@lib/api';
 import { useMutation } from '@tanstack/react-query';
 import { Key } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const RequestApiKey = () => {
+	const router = useRouter();
+
 	const {
 		mutate,
 		data: apiKey,
@@ -63,6 +67,12 @@ const RequestApiKey = () => {
 					</Button>
 				</div>
 			</form>
+			<div className="mx-auto text-center mt-12">
+				<Button variant="ghost" className="w-fit" onClick={router.refresh}>
+					<span>Check your connection histories </span>
+					<Icons.ChevronRight className="mr-2 h-4 w-4" />
+				</Button>
+			</div>
 		</div>
 	);
 };
