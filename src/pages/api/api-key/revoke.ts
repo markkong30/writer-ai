@@ -36,6 +36,15 @@ const handler = async (
 			}
 		});
 
+		await db.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				apiKeyId: existingApiKey.id
+			}
+		});
+
 		return res.status(200).json({ error: null, success: true });
 	} catch (error) {
 		if (error instanceof z.ZodError) {

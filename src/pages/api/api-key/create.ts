@@ -34,10 +34,21 @@ const handler = async (
 				apiKey: null
 			});
 
+		const newKeyId = nanoid();
+
 		const newApiKey = await db.apiKey.create({
 			data: {
 				userId: user.id,
-				key: nanoid()
+				key: newKeyId
+			}
+		});
+
+		await db.user.update({
+			where: {
+				id: user.id
+			},
+			data: {
+				apiKeyId: newKeyId
 			}
 		});
 

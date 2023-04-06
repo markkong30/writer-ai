@@ -30,6 +30,12 @@ const Navbar: FC = async () => {
 					>
 						Documentation
 					</Link>
+					<Link
+						className={buttonVariants({ variant: 'ghost' })}
+						href="/playground"
+					>
+						Playground
+					</Link>
 					{session ? (
 						<>
 							<Link

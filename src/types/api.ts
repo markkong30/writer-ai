@@ -1,3 +1,4 @@
+import { Mode } from '@lib/prompts';
 import { ApiKey } from '@prisma/client';
 import { ZodIssue } from 'zod';
 
@@ -11,4 +12,16 @@ export interface CreateApiKeyResponse {
 export interface RevokeApiKeyResponse {
 	error: string | ZodIssue[] | null;
 	success: boolean;
+}
+
+export interface GenerateOutputParams {
+	mode: Mode;
+	input: string;
+}
+
+export interface GenerateOutputResponse {
+	mode: Mode;
+	output: string;
+	success: boolean;
+	error?: string | ZodIssue[];
 }

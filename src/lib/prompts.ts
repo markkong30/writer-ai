@@ -70,7 +70,7 @@ export const getPrompts = (mode: Mode, input: string) => {
 			return `Rephrase the following sentence to make it more clear: "${input}"`;
 
 		case 'correct_gramma':
-			return `Correct the grammar of the following sentence: "${input}"`;
+			return `Correct the grammar of the following sentence: "${input}". If the original text is already correcy, return the same text as the output`;
 
 		case 'replace_word':
 			return `Replace the underlined word in the following sentence with a synonym: "${input}"`;
