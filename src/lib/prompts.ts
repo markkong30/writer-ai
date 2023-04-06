@@ -1,3 +1,17 @@
+export type Mode =
+	| 'extend'
+	| 'shorten'
+	| 'rephrase'
+	| 'correct_gramma'
+	| 'replace_word'
+	| 'simplify'
+	| 'summarize';
+
+type ModeDetail = {
+	name: string;
+	description: string;
+};
+
 export const modes = [
 	'extend',
 	'shorten',
@@ -8,7 +22,41 @@ export const modes = [
 	'summarize'
 ] as const;
 
-export type Mode = typeof modes[number];
+export const modesDetails: ModeDetail[] = [
+	{
+		name: 'extend',
+		description: 'adds more information or details to the text'
+	},
+	{
+		name: 'shorten',
+		description:
+			'removes unnecessary words or sentences to make the text more concise'
+	},
+	{
+		name: 'rephrase',
+		description:
+			'rewrites sentences to convey the same meaning but in a different way'
+	},
+	{
+		name: 'correct_gramma',
+		description: 'corrects grammatical errors in the text'
+	},
+	{
+		name: 'replace_word',
+		description:
+			'replaces a word or phrase with a different word or phrase that has a similar meaning'
+	},
+	{
+		name: 'simplify',
+		description:
+			'makes the text easier to understand by using simpler language and sentence structures'
+	},
+	{
+		name: 'summarize',
+		description:
+			'condenses the text into a shorter version while retaining the main ideas'
+	}
+];
 
 export const getPrompts = (mode: Mode, input: string) => {
 	switch (mode) {
