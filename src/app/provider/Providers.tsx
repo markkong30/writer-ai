@@ -6,19 +6,19 @@ import { ThemeProvider } from 'next-themes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 type Props = {
-	children: ReactNode;
+  children: ReactNode;
 };
 
 const Providers: FC<Props> = ({ children }) => {
-	const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(() => new QueryClient());
 
-	return (
-		<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-			<QueryClientProvider client={queryClient}>
-				<SessionProvider>{children}</SessionProvider>
-			</QueryClientProvider>
-		</ThemeProvider>
-	);
+  return (
+    <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider>{children}</SessionProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+  );
 };
 
 export default Providers;

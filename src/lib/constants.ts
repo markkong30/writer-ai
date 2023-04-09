@@ -43,4 +43,4 @@ else:
     print(f'Request failed with status code {response.status_code}')`;
 
 export const metaDescription =
-	'Free & open-source API to improve your writings';
+  'Free & open-source API to improve your writings';

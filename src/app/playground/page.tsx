@@ -9,34 +9,34 @@ import { db } from '@lib/db';
 import Content from '@components/playground/Content';
 
 export const metadata: Metadata = {
-	title: 'AuthorAI API | Playground',
-	description: metaDescription
+  title: 'AuthorAI API | Playground',
+  description: metaDescription,
 };
 
 const Playground = async () => {
-	const user = await getServerSession(authOptions);
-	if (!user) return notFound();
+  const user = await getServerSession(authOptions);
+  if (!user) return notFound();
 
-	const apiKey = await db.apiKey.findFirst({
-		where: { userId: user.user.id, enabled: true }
-	});
+  const apiKey = await db.apiKey.findFirst({
+    where: { userId: user.user.id, enabled: true },
+  });
 
-	if (!apiKey) return null;
+  if (!apiKey) return null;
 
-	return (
-		<>
-			<div className="container max-w-7xl mx-auto mt-12 py-20">
-				<div className="flex flex-col items-center gap-6">
-					<Heading>API Playground</Heading>
-					<Paragraph>
-						Experience the capabilities of AI in various modes through the API
-						Playground.
-					</Paragraph>
-					<Content apiKey={apiKey.key} />
-				</div>
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className='container max-w-7xl mx-auto mt-12 py-20'>
+        <div className='flex flex-col items-center gap-6'>
+          <Heading>API Playground</Heading>
+          <Paragraph>
+            Experience the capabilities of AI in various modes through the API
+            Playground.
+          </Paragraph>
+          <Content apiKey={apiKey.key} />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Playground;

@@ -8,61 +8,61 @@ import { z } from 'zod';
 import { withMethods } from '@lib/middlewares';
 
 const handler = async (
-	req: NextApiRequest,
-	res: NextApiResponse<CreateApiKeyResponse>
+  req: NextApiRequest,
+  res: NextApiResponse<CreateApiKeyResponse>,
 ) => {
-	try {
-		const session = await getServerSession(req, res, authOptions);
-		const user = session?.user;
+  try {
+    const session = await getServerSession(req, res, authOptions);
+    const user = session?.user;
 
-		if (!user)
-			return res.status(401).json({
-				error: 'Unauthorized to peform this action',
-				apiKey: null
-			});
+    if (!user)
+      return res.status(401).json({
+        error: 'Unauthorized to peform this action',
+        apiKey: null,
+      });
 
-		const existingApiKey = await db.apiKey.findFirst({
-			where: {
-				userId: user.id,
-				enabled: true
-			}
-		});
+    const existingApiKey = await db.apiKey.findFirst({
+      where: {
+        userId: user.id,
+        enabled: true,
+      },
+    });
 
-		if (existingApiKey)
-			return res.status(400).json({
-				error: 'You already have a valid API key',
-				apiKey: null
-			});
+    if (existingApiKey)
+      return res.status(400).json({
+        error: 'You already have a valid API key',
+        apiKey: null,
+      });
 
-		const newKeyId = nanoid();
+    const newKeyId = nanoid();
 
-		const newApiKey = await db.apiKey.create({
-			data: {
-				userId: user.id,
-				key: newKeyId
-			}
-		});
+    const newApiKey = await db.apiKey.create({
+      data: {
+        userId: user.id,
+        key: newKeyId,
+      },
+    });
 
-		await db.user.update({
-			where: {
-				id: user.id
-			},
-			data: {
-				apiKeyId: newKeyId
-			}
-		});
+    await db.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        apiKeyId: newKeyId,
+      },
+    });
 
-		return res.status(201).json({ error: null, apiKey: newApiKey });
-	} catch (err) {
-		if (err instanceof z.ZodError) {
-			return res.status(400).json({ error: err.issues, apiKey: null });
-		}
+    return res.status(201).json({ error: null, apiKey: newApiKey });
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ error: err.issues, apiKey: null });
+    }
 
-		return res.status(500).json({
-			error: 'Internal Server Error',
-			apiKey: null
-		});
-	}
+    return res.status(500).json({
+      error: 'Internal Server Error',
+      apiKey: null,
+    });
+  }
 };
 
 export default withMethods(['GET'], handler);
