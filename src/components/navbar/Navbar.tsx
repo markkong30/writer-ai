@@ -7,7 +7,7 @@ import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { FC } from 'react';
 
-// @ts-expect-error
+// @ts-expect-error server-side
 const Navbar: FC = async () => {
 	const session = await getServerSession(authOptions);
 

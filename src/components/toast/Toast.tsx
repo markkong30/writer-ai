@@ -42,19 +42,17 @@ Toast.Icon = function ToastIcon({ name, className, ...props }: ToastIconProps) {
 	);
 };
 
-interface ToastTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
-
-Toast.Title = function ToastTitle({ className, ...props }: ToastTitleProps) {
+Toast.Title = function ToastTitle({
+	className,
+	...props
+}: React.HTMLAttributes<HTMLHeadingElement>) {
 	return <p className={cn('text-sm font-medium', className)} {...props} />;
 };
-
-interface ToastDescriptionProps
-	extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 Toast.Description = function ToastDescription({
 	className,
 	...props
-}: ToastDescriptionProps) {
+}: React.HTMLAttributes<HTMLParagraphElement>) {
 	return <p className={cn('text-sm opacity-80', className)} {...props} />;
 };
 

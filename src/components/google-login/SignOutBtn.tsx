@@ -6,9 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { signOut } from 'next-auth/react';
 import { FC } from 'react';
 
-type Props = {};
-
-const SignOutBtn: FC<Props> = ({}) => {
+const SignOutBtn: FC = () => {
 	const { mutate, isLoading } = useMutation({
 		mutationFn: () => signOut(),
 		onError: () => {
