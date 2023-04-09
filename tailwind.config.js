@@ -1,4 +1,3 @@
-/* eslint @typescript-eslint/no-var-requires: "off" */
 const { colors } = require('tailwindcss/colors');
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
