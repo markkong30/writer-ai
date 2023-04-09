@@ -19,7 +19,9 @@ export const useGenerate = (apiKey: string) => {
 			toast({
 				title: 'Error generating output',
 				message:
-					err instanceof z.ZodError ? err.message : 'Please try again later.',
+					err instanceof z.ZodError
+						? err.message
+						: `Limit exceeded! You can only make 10 requests per hour in a free account.`,
 				type: 'error'
 			});
 		}

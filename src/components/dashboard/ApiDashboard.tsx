@@ -10,7 +10,7 @@ import { FC } from 'react';
 import Table from '@components/table/Table';
 import ApiKeyOptions from '@components/api-key-options/ApiKeyOptions';
 
-// @ts-expect-error
+// @ts-expect-error server-side
 const ApiDashboard: FC = async () => {
 	const user = await getServerSession(authOptions);
 	if (!user) return notFound();

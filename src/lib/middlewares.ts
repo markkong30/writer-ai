@@ -3,7 +3,7 @@ import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { db } from './db';
 import { differenceInMinutes } from 'date-fns';
 
-const MAX_REQUEST_PER_HOUR = 5;
+const MAX_REQUEST_PER_HOUR = 10;
 
 export function withMethods(methods: Method[], handler: NextApiHandler) {
 	return async function (req: NextApiRequest, res: NextApiResponse) {
@@ -48,7 +48,7 @@ export function withMethods(methods: Method[], handler: NextApiHandler) {
 			const latestRequest = userRequests[0];
 
 			if (
-				requestCount === MAX_REQUEST_PER_HOUR &&
+				requestCount >= MAX_REQUEST_PER_HOUR &&
 				latestRequest &&
 				latestRequest.timestamp.getTime() >= hourAgo.getTime()
 			) {
