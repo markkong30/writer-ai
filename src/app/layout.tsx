@@ -5,6 +5,7 @@ import { FC, ReactNode } from 'react';
 import Providers from './provider/Providers';
 import Navbar from '@components/navbar/Navbar';
 import { Toaster } from '@components/toast/Toast';
+import ChatBot from '@components/chatbot/ChatBot';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,7 @@ const Layout: FC<Props> = ({ children }) => {
         <Providers>
           <Navbar />
           <Toaster position='bottom-right' />
-
+          <ChatBot />
           {children}
         </Providers>
 
