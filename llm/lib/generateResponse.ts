@@ -2,8 +2,8 @@ import { OpenAI } from 'langchain/llms';
 import { LLMChain, PromptTemplate } from 'langchain';
 import { HNSWLib } from 'langchain/vectorstores';
 import { OpenAIEmbeddings } from 'langchain/embeddings';
-import promptTemplate from './basePrompt.js';
-import { GenerateParams } from './types.js';
+import promptTemplate from './basePrompt';
+import { GenerateParams } from './types';
 
 // OpenAI Configuration
 const model = new OpenAI({
