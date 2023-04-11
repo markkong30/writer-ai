@@ -17,6 +17,7 @@ const Welcome: FC<Props> = ({ goToChat }) => {
         height={200}
         alt=''
         className='-mb-8 pointer-events-none'
+        priority
       />
       <Heading size='xs'>Your AI Assistant</Heading>
       <Paragraph size='sm'>

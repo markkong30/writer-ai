@@ -13,8 +13,9 @@ type Props = {
 const ChatInterface: FC<Props> = ({ closeChat, completeWelcome, goToChat }) => {
   return (
     <motion.div
-      className='absolute top-0 right-0 -translate-y-full shadow'
+      className='absolute top-[-500px] right-0 shadow'
       drag
+      draggable
       dragMomentum={false}
     >
       {completeWelcome ? <Chat /> : <Welcome goToChat={goToChat} />}
