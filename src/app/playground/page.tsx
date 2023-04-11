@@ -4,7 +4,6 @@ import Paragraph from '@components/paragraph/Paragraph';
 import { metaDescription } from '@lib/constants';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@lib/auth';
-import { notFound } from 'next/navigation';
 import { db } from '@lib/db';
 import Content from '@components/playground/Content';
 
@@ -15,13 +14,10 @@ export const metadata: Metadata = {
 
 const Playground = async () => {
   const user = await getServerSession(authOptions);
-  if (!user) return notFound();
 
   const apiKey = await db.apiKey.findFirst({
-    where: { userId: user.user.id, enabled: true },
+    where: { userId: user?.user.id, enabled: true },
   });
-
-  if (!apiKey) return null;
 
   return (
     <>
@@ -32,7 +28,7 @@ const Playground = async () => {
             Experience the capabilities of AI in various modes through the API
             Playground.
           </Paragraph>
-          <Content apiKey={apiKey.key} />
+          <Content apiKey={apiKey?.key || ''} />
         </div>
       </div>
     </>
