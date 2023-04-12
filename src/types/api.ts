@@ -25,3 +25,11 @@ export interface GenerateOutputResponse {
   success: boolean;
   error?: string | ZodIssue[];
 }
+
+export interface GenerateBotParams {
+  query: string;
+}
+
+export interface GenerateBotResponse {
+  output: string;
+}

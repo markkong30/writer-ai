@@ -10,7 +10,7 @@ type Props = {
 
 const Welcome: FC<Props> = ({ goToChat }) => {
   return (
-    <div className='relative w-[300px] h-[500px] px-4 pb-4 rounded-lg dark:bg-black flex flex-col justify-center items-center gap-8 text-center'>
+    <div className='relative w-[300px] h-[500px] px-4 pb-4 rounded-lg dark:bg-slate-950 flex flex-col justify-center items-center gap-8 text-center'>
       <Image
         src='/robot.gif'
         width={200}

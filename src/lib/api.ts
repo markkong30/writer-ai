@@ -1,5 +1,7 @@
 import {
   CreateApiKeyResponse,
+  GenerateBotParams,
+  GenerateBotResponse,
   GenerateOutputParams,
   GenerateOutputResponse,
 } from '@/types/api';
@@ -51,6 +53,20 @@ export const generateOutput = async (
         : (data.error as string),
     );
   }
+
+  return data;
+};
+
+export const generateBot = async (params: GenerateBotParams) => {
+  const res = await fetch('/api/bot/prompt', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(params),
+  });
+
+  const data = (await res.json()) as GenerateBotResponse;
 
   return data;
 };

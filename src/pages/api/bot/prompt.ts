@@ -5,18 +5,18 @@ import generateResponse from '../../../../llm/lib/generateResponse';
 import { GenerateParams } from '../../../../llm/lib/types';
 
 const reqSchema = z.object({
-  prompt: z.string().max(1000),
+  query: z.string().max(1000),
 });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const body = req.body as unknown;
 
   try {
-    const { prompt } = reqSchema.parse(body);
+    const { query } = reqSchema.parse(body);
 
     const params: GenerateParams = {
       history: [],
-      prompt,
+      query,
     };
 
     const response = await generateResponse(params);
@@ -32,4 +32,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default withMethods(['GET'], handler);
+export default withMethods(['POST'], handler);

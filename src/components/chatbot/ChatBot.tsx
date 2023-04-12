@@ -12,7 +12,7 @@ const ChatBot: FC = () => {
   return (
     <div className='fixed bottom-10 right-10 z-10'>
       <button
-        className='p-4 bg-slate-200 dark:bg-slate-600 rounded'
+        className='p-4 dark:bg-slate-950 rounded'
         type='button'
         onClick={() => setIsOpen(prev => !prev)}
       >

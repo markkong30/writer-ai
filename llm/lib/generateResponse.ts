@@ -27,19 +27,19 @@ const llmChain = new LLMChain({
 /**
  * Generates a Response based on history and a prompt.
  * @param {string} history -
- * @param {string} prompt - Th
+ * @param {string} query - Th
  */
-const generateResponse = async ({ history, prompt }: GenerateParams) => {
+const generateResponse = async ({ history, query }: GenerateParams) => {
   // Load the Vector Store from the `vectorStore` directory
   const store = await HNSWLib.load(
-    'vectorStore',
+    'llm/vectorStore',
     new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
     }),
   );
 
   // Search for related context/documents in the vectorStore directory
-  const data = await store.similaritySearch(prompt, 1);
+  const data = await store.similaritySearch(query, 1);
 
   const context: string[] = [];
   data.forEach((item, i) => {
@@ -47,7 +47,7 @@ const generateResponse = async ({ history, prompt }: GenerateParams) => {
   });
 
   return await llmChain.call({
-    prompt,
+    prompt: query,
     context: context.join('\n\n'),
     history,
   });

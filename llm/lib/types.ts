@@ -1,4 +1,4 @@
 export type GenerateParams = {
   history: string[];
-  prompt: string;
+  query: string;
 };
