@@ -4,6 +4,7 @@ import { HNSWLib } from 'langchain/vectorstores';
 import { OpenAIEmbeddings } from 'langchain/embeddings';
 import promptTemplate from './basePrompt';
 import { GenerateParams } from './types';
+import path from 'path';
 
 // OpenAI Configuration
 const model = new OpenAI({
@@ -30,15 +31,16 @@ const llmChain = new LLMChain({
  * @param {string} query - Th
  */
 const generateResponse = async ({ history, query }: GenerateParams) => {
-  console.log(query);
+  const storePath = path.join(process.cwd(), 'llm/vectorStore');
+  console.log(storePath);
+  // return;
   // Load the Vector Store from the `vectorStore` directory
   const store = await HNSWLib.load(
-    'llm/vectorStore',
+    storePath,
     new OpenAIEmbeddings({
       openAIApiKey: process.env.OPENAI_API_KEY,
     }),
   );
-  console.log(store);
 
   // Search for related context/documents in the vectorStore directory
   const data = await store.similaritySearch(query, 1);
