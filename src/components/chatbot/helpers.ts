@@ -6,7 +6,7 @@ import {
   setLocalStorage,
 } from '@lib/localStorage';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Message } from './types';
 
 export const useChatBot = () => {
@@ -14,6 +14,9 @@ export const useChatBot = () => {
   const [completeWelcome, setCompleteWelcome] = useState(
     !!getLocalStorage(LocalStorageKeys.botWelcome),
   );
+  const [query, setQuery] = useState('');
+  const [messages, setMessages] = useState<Message[]>([]);
+
   const closeChat = () => setIsOpen(false);
 
   const goToChat = () => {
@@ -21,18 +24,6 @@ export const useChatBot = () => {
     setCompleteWelcome(true);
   };
 
-  return {
-    isOpen,
-    setIsOpen,
-    closeChat,
-    completeWelcome,
-    goToChat,
-  };
-};
-
-export const useChat = () => {
-  const [query, setQuery] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
   const { mutate, isLoading } = useMutation({
     mutationFn: () => generateBot({ query }),
     onMutate: () => {
@@ -54,7 +45,22 @@ export const useChat = () => {
   const updateMessages = (text: string, fromUser: boolean) =>
     setMessages(prev => [...prev, { text, fromUser }]);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!messages.length && isOpen) {
+        updateMessages('Hi there! How can I help you today?', false);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [isOpen]);
+
   return {
+    isOpen,
+    setIsOpen,
+    closeChat,
+    completeWelcome,
+    goToChat,
     query,
     setQuery,
     messages,

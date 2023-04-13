@@ -3,12 +3,17 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import ChatInterface from './ChatInterface';
-import { useChat, useChatBot } from './helpers';
+import { useChatBot } from './helpers';
 
 const ChatBot: FC = () => {
-  const { isOpen, setIsOpen, closeChat, completeWelcome, goToChat } =
-    useChatBot();
-  const chatProps = useChat();
+  const {
+    isOpen,
+    setIsOpen,
+    closeChat,
+    completeWelcome,
+    goToChat,
+    ...chatProps
+  } = useChatBot();
 
   return (
     <div className='fixed bottom-10 right-10 z-10'>
