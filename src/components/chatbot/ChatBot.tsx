@@ -3,16 +3,17 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import ChatInterface from './ChatInterface';
-import { useChatBot } from './helpers';
+import { useChat, useChatBot } from './helpers';
 
 const ChatBot: FC = () => {
   const { isOpen, setIsOpen, closeChat, completeWelcome, goToChat } =
     useChatBot();
+  const chatProps = useChat();
 
   return (
     <div className='fixed bottom-10 right-10 z-10'>
       <button
-        className='p-4 dark:bg-slate-950 rounded'
+        className='p-4 dark:bg-slate-950 rounded shadow-lg'
         type='button'
         onClick={() => setIsOpen(prev => !prev)}
       >
@@ -23,6 +24,7 @@ const ChatBot: FC = () => {
           closeChat={closeChat}
           completeWelcome={completeWelcome}
           goToChat={goToChat}
+          {...chatProps}
         />
       )}
     </div>

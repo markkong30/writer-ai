@@ -25,15 +25,14 @@ const llmChain = new LLMChain({
   prompt,
 });
 
+const storePath = path.join(process.cwd(), 'llm/vectorStore');
+
 /**
  * Generates a Response based on history and a prompt.
  * @param {string} history -
  * @param {string} query - Th
  */
 const generateResponse = async ({ history, query }: GenerateParams) => {
-  const storePath = path.join(process.cwd(), 'llm/vectorStore');
-  console.log(storePath);
-  // return;
   // Load the Vector Store from the `vectorStore` directory
   const store = await HNSWLib.load(
     storePath,
@@ -46,7 +45,7 @@ const generateResponse = async ({ history, query }: GenerateParams) => {
   const data = await store.similaritySearch(query, 1);
 
   const context: string[] = [];
-  data.forEach((item, i) => {
+  data.forEach(item => {
     context.push(`Context:\n${item.pageContent}`);
   });
 
