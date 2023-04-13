@@ -18,13 +18,13 @@ const ChatBot: FC = () => {
       >
         <Image src='/chat.svg' alt='chatbot' width={40} height={40} />
       </button>
-      {isOpen && (
+      <div className={!isOpen ? 'hidden' : 'block'}>
         <ChatInterface
           closeChat={closeChat}
           completeWelcome={completeWelcome}
           goToChat={goToChat}
         />
-      )}
+      </div>
     </div>
   );
 };
