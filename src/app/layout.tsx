@@ -26,8 +26,6 @@ const Layout: FC<Props> = ({ children }) => {
           <ChatBot />
           {children}
         </Providers>
-
-        <div className='h-40 md:hidden' />
       </body>
     </html>
   );

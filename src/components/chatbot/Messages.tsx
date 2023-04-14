@@ -8,10 +8,15 @@ import { BeatLoader } from 'react-spinners';
 
 type Props = {
   messages: Message[];
+  updateBotMessage: () => void;
   isGeneratingOutput: boolean;
 };
 
-const Messages: FC<Props> = ({ messages, isGeneratingOutput }) => {
+const Messages: FC<Props> = ({
+  messages,
+  updateBotMessage,
+  isGeneratingOutput,
+}) => {
   return (
     <Scrollable classNames='flex-1 py-4' offset>
       <div className='flex flex-col gap-4'>
@@ -29,12 +34,15 @@ const Messages: FC<Props> = ({ messages, isGeneratingOutput }) => {
               size='xs'
               className='font-semibold mb-0 text-white text-start'
             >
-              {i === messages.length - 1 && !message.fromUser ? (
+              {i === messages.length - 1 &&
+              !message.fromUser &&
+              !message.typed ? (
                 <Typewriter
                   words={[message.text]}
                   loop={1}
                   typeSpeed={20}
                   deleteSpeed={0}
+                  onLoopDone={updateBotMessage}
                 />
               ) : (
                 message.text

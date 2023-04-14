@@ -12,6 +12,7 @@ type Props = {
   query: string;
   setQuery: (text: string) => void;
   messages: Message[];
+  updateBotMessage: () => void;
   generateOutput: () => void;
   isGeneratingOutput: boolean;
 };

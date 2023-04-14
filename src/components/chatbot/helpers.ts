@@ -27,7 +27,7 @@ export const useChatBot = () => {
   const { mutate, isLoading } = useMutation({
     mutationFn: () => generateBot({ query }),
     onMutate: () => {
-      updateMessages(query, true);
+      updateMessages(query, true, true);
     },
     onError: () => {
       toast({
@@ -37,18 +37,24 @@ export const useChatBot = () => {
       });
     },
     onSuccess: data => {
-      updateMessages(data.output, false);
+      updateMessages(data.output, false, false);
       setQuery('');
     },
   });
 
-  const updateMessages = (text: string, fromUser: boolean) =>
-    setMessages(prev => [...prev, { text, fromUser }]);
+  const updateMessages = (text: string, fromUser: boolean, typed: boolean) =>
+    setMessages(prev => [...prev, { text, fromUser, typed }]);
+
+  const updateBotMessage = () =>
+    setMessages(prev => [
+      ...prev.slice(0, prev.length - 1),
+      { ...prev[prev.length - 1], typed: true },
+    ]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!messages.length && isOpen) {
-        updateMessages('Hi there! How can I help you today?', false);
+        updateMessages('Hi there! How can I help you?', false, false);
       }
     }, 1000);
 
@@ -64,6 +70,7 @@ export const useChatBot = () => {
     query,
     setQuery,
     messages,
+    updateBotMessage,
     generateOutput: mutate,
     isGeneratingOutput: isLoading,
   };
