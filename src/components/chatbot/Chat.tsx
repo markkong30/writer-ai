@@ -31,6 +31,7 @@ const Chat: FC<Props> = ({
       />
       <Input
         generateOutput={generateOutput}
+        isGeneratingOutput={isGeneratingOutput}
         query={query}
         setQuery={setQuery}
       />

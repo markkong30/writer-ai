@@ -6,9 +6,15 @@ type Props = {
   query: string;
   setQuery: (text: string) => void;
   generateOutput: () => void;
+  isGeneratingOutput: boolean;
 };
 
-const ChatInput: FC<Props> = ({ query, setQuery, generateOutput }) => {
+const ChatInput: FC<Props> = ({
+  query,
+  setQuery,
+  generateOutput,
+  isGeneratingOutput,
+}) => {
   return (
     <form
       className='relative'
@@ -25,7 +31,8 @@ const ChatInput: FC<Props> = ({ query, setQuery, generateOutput }) => {
       />
       <button
         type='submit'
-        className='absolute right-1 bottom-1 rounded-full h-10 w-10 bg-blue-500 flex justify-center items-center'
+        disabled={!query.length || isGeneratingOutput}
+        className='absolute right-1 bottom-1 rounded-full h-10 w-10 bg-blue-500 flex justify-center items-center disabled:bg-blue-400 disabled:opacity-75'
       >
         <Image src='/send.svg' width={24} height={24} alt='send' />
       </button>

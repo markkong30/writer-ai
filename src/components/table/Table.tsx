@@ -3,6 +3,7 @@
 import { createTheme, ThemeProvider } from '@mui/material';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { ApiRequest } from '@prisma/client';
+import { format } from 'date-fns';
 import { useTheme } from 'next-themes';
 import { FC } from 'react';
 
@@ -38,6 +39,9 @@ const columns: GridColDef[] = [
   {
     field: 'col3',
     headerName: 'Recency',
+    type: 'date',
+    valueGetter: params => new Date(params.value),
+    valueFormatter: params => format(params.value, 'MMMM d, yyyy HH:mm:ss'),
     width: 250,
     renderHeader(params) {
       return (
