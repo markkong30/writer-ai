@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import type { Metadata } from 'next';
 import Heading from '@components/heading/Heading';
 import Paragraph from '@components/paragraph/Paragraph';
 import { metaDescription } from '@lib/constants';
+import FantasyBook from '@components/fantasy-book/FantasyBook';
 
 export const metadata: Metadata = {
   title: 'AuthorAI API | Home',
@@ -35,16 +35,8 @@ export default function Home() {
             .
           </Paragraph>
 
-          <div className='relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute'>
-            <Image
-              priority
-              className='img-shadow '
-              quality={100}
-              style={{ objectFit: 'contain' }}
-              fill
-              src='/typewriter.png'
-              alt='typewriter'
-            />
+          <div className='relative w-full max-w-xl lg:max-w-3xl lg:left-1/2 aspect-square lg:absolute overflow-visible'>
+            <FantasyBook />
           </div>
         </div>
       </div>
