@@ -1,10 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "assignees": ["markkong30"],
+  "reviewers": ["markkong30"],
   "baseBranches": ["main"],
+  "schedule": ["after 10pm and before 5am every weekday", "every weekend"],
+  "timezone": "GB",
   "constraints": {
-    "node": "< 18.0.0"
+    "node": "< 16.17"
   },
   "packageRules": [
     {
@@ -31,6 +33,10 @@
       "matchPackagePatterns": ["^radix", "^@radix"],
       "matchUpdateTypes": ["patch", "minor"],
       "groupName": "next packages"
+    },
+    {
+      "matchPackagePatterns": ["^node"],
+      "enabled": false
     }
   ]
 }
