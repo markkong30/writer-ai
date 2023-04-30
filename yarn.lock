@@ -1073,9 +1073,9 @@
     "@types/lodash" "*"
 
 "@types/lodash@*":
-  version "4.14.192"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.192.tgz#5790406361a2852d332d41635d927f1600811285"
-  integrity sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A==
+  version "4.14.194"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.194.tgz#b71eb6f7a0ff11bff59fc987134a093029258a76"
+  integrity sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==
 
 "@types/minimatch@^5.1.2":
   version "5.1.2"
@@ -4366,10 +4366,10 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-simplebar-core@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/simplebar-core/-/simplebar-core-1.2.3.tgz#d270ecec9aca14850c400a7aa80503858f6f23a5"
-  integrity sha512-xWZOYLlqWMW8qDCh1vcyyPdb10FOb8KJNCgqimsBKWS/o6a/9LnATjBgR2+nTzTHUT+DGOOf+TM8yj54/Io+dw==
+simplebar-core@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/simplebar-core/-/simplebar-core-1.2.4.tgz#1fe965716a426f812c1a112ce28d98b9a643797b"
+  integrity sha512-P+Sqshef4fq3++gQ82TgNYcgl3qZFSCP5jS2/8NMmw18oagXOijMzs1G+vm6RUY3oMvpwH3wGoqh9u6SyDjHfQ==
   dependencies:
     "@types/lodash-es" "^4.17.6"
     can-use-dom "^0.1.0"
@@ -4377,11 +4377,11 @@ simplebar-core@^1.2.3:
     lodash-es "^4.17.21"
 
 simplebar-react@^3.2.1:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/simplebar-react/-/simplebar-react-3.2.3.tgz#b0d1d6111ab0ef009547baf83df58977b8fec20a"
-  integrity sha512-GjbACC7KlDUlfIZSbLf7K4FQcHW4rS0OFAAs6YvJpHUsOZ5DtIzg1WD4Uv+nO8wfQLFXMyFHDVk0jm15APFRNA==
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/simplebar-react/-/simplebar-react-3.2.4.tgz#fa495e50048c497c767fb5591b106658f160b240"
+  integrity sha512-ogLN79e7JUm82wJChD7NSUB+4EHCFvDkjXpiu8hT1Alk7DnCekUWds61NXcsP9jC97KOgF5To/AVjYFbX0olgg==
   dependencies:
-    simplebar-core "^1.2.3"
+    simplebar-core "^1.2.4"
 
 slash@^3.0.0:
   version "3.0.0"
