@@ -1,0 +1,42 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "reviewers": ["markkong30"],
+  "baseBranches": ["main"],
+  "schedule": ["after 10pm and before 5am every weekday", "every weekend"],
+  "timezone": "GB",
+  "constraints": {
+    "node": "< 16.17"
+  },
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "devDependencies (non-major)"
+    },
+    {
+      "matchPackagePatterns": ["^react", "^@react"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "react packages"
+    },
+    {
+      "matchPackagePatterns": ["^next", "^@next"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "next packages"
+    },
+    {
+      "matchPackagePatterns": ["^mui", "^@mui"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "mui packages"
+    },
+    {
+      "matchPackagePatterns": ["^radix", "^@radix"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "groupName": "next packages"
+    },
+    {
+      "matchPackagePatterns": ["^node"],
+      "enabled": false
+    }
+  ]
+}
