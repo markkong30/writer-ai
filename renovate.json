@@ -8,30 +8,34 @@
   "constraints": {
     "node": "< 16.17"
   },
+  "separateMinorPatch": true,
+  "patch": {
+    "enabled": false
+  },
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor"],
       "groupName": "devDependencies (non-major)"
     },
     {
       "matchPackagePatterns": ["^react", "^@react"],
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor"],
       "groupName": "react packages"
     },
     {
       "matchPackagePatterns": ["^next", "^@next"],
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor"],
       "groupName": "next packages"
     },
     {
       "matchPackagePatterns": ["^mui", "^@mui"],
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor"],
       "groupName": "mui packages"
     },
     {
       "matchPackagePatterns": ["^radix", "^@radix"],
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor"],
       "groupName": "next packages"
     },
     {
