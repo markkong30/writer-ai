@@ -5,6 +5,7 @@
   "baseBranches": ["main"],
   "schedule": ["after 10pm and before 5am every weekday", "every weekend"],
   "timezone": "GB",
+  "prConcurrentLimit": 5,
   "constraints": {
     "node": "< 16.17"
   },
