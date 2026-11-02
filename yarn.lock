@@ -1078,10 +1078,10 @@
     "@tanstack/query-core" "4.29.5"
     use-sync-external-store "^1.2.0"
 
-"@total-typescript/ts-reset@^0.4.0":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@total-typescript/ts-reset/-/ts-reset-0.4.2.tgz#c564c173ba09973968e1046c93965b7a257878a4"
-  integrity sha512-vqd7ZUDSrXFVT1n8b2kc3LnklncDQFPvR58yUS1kEP23/nHPAO9l1lMjUfnPrXYYk4Hj54rrLKMW5ipwk7k09A==
+"@total-typescript/ts-reset@^0.6.0":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@total-typescript/ts-reset/-/ts-reset-0.6.1.tgz#aebb29b6a79bb404e4cf618da6a392c94ed73a45"
+  integrity sha512-cka47fVSo6lfQDIATYqb/vO1nvFfbPw7uWLayIXIhGETj0wcOOlrlkobOMDNQOFr9QOafegUPq13V2+6vtD7yg==
 
 "@tweenjs/tween.js@~18.6.4":
   version "18.6.4"
